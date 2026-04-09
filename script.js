@@ -1,29 +1,13 @@
-// Cambio de Tema (Oscuro/Claro)
 const themeToggle = document.querySelector('#theme-toggle');
-const body = document.documentElement;
+const htmlElement = document.documentElement;
+const icon = themeToggle.querySelector('i');
 
 themeToggle.addEventListener('click', () => {
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    if (htmlElement.getAttribute('data-theme') === 'dark') {
+        htmlElement.removeAttribute('data-theme');
+        icon.classList.replace('fa-sun', 'fa-moon');
     } else {
-        body.setAttribute('data-theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        htmlElement.setAttribute('data-theme', 'dark');
+        icon.classList.replace('fa-moon', 'fa-sun');
     }
-});
-
-// Animación simple de entrada para las tarjetas
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-});
-
-document.querySelectorAll('.card').forEach(card => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(20px)";
-    observer.observe(card);
 });
